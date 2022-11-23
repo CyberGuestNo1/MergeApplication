@@ -1,44 +1,46 @@
-﻿// See https://aka.ms/new-console-template for more information
+﻿using System.Text.RegularExpressions;
 
-using System.Text.RegularExpressions;
-using MergeApplication;
+namespace MergeApplication;
 
-if (!IsInputValid(args))
-    return;
-
-var mergedIntervals = MergeIntervals(args);
-Console.WriteLine(string.Join(" ", mergedIntervals));
-
-static List<Interval> MergeIntervals(string[] inputs)
+public static class Program
 {
-    var mergedIntervals = new List<Interval>();
-    foreach (var interval in inputs)
+    public static void Main(string[] args)
     {
-        if (mergedIntervals.Count == 0)
-        {
-            mergedIntervals.Add(new Interval(interval));
-            continue;
-        }
+        if (!IsInputValid(args))
+            throw new ArgumentException("At least one does not match the given scheme.");
 
-        var intervalObject = new Interval(interval);
-        var merged = false;
-        foreach (var mergedInterval in mergedIntervals)
-        {
-            if (mergedInterval.Contains(intervalObject))
-            {
-                mergedInterval.Merge(intervalObject);
-                merged = true;
-                break;
-            }
-        }
-        if(!merged)
-            mergedIntervals.Add(intervalObject);
+        var mergedIntervals = MergeIntervals(args);
+        Console.WriteLine(string.Join(" ", mergedIntervals));
     }
 
-    return mergedIntervals;
-}
+    private static List<Interval> MergeIntervals(string[] inputs)
+    {
+        var mergedIntervals = new List<Interval>();
+        foreach (var interval in inputs)
+        {
+            // for first interval no merge is needed
+            if (mergedIntervals.Count == 0)
+            {
+                mergedIntervals.Add(new Interval(interval));
+                continue;
+            }
 
-bool IsInputValid(string[] inputs)
-{
-    return inputs.All(x => Regex.IsMatch(x, @"\[-?[0-9]+,-?[0-9]+\]"));
+            var intervalObject = new Interval(interval);
+            // check if interval can be merged with already existing interval. Else add to list
+            var containingInterval = mergedIntervals.FirstOrDefault(x => x.Contains(intervalObject));
+            if(containingInterval != null)
+                containingInterval.Merge(intervalObject);
+            else
+                mergedIntervals.Add(intervalObject);
+                
+        }
+
+        return mergedIntervals;
+    }
+
+    private static bool IsInputValid(string[] inputs)
+    {
+        // check if all inputs are like [-19,360]
+        return inputs.All(x => Regex.IsMatch(x, @"\[-?[0-9]+,-?[0-9]+\]"));
+    }
 }

@@ -4,36 +4,40 @@ namespace MergeApplication;
 
 public class Interval
 {
-    private long _start;
-    private long _end;
+    public long Start;
+    public long End;
 
     public Interval(string interval)
     {
+        // get numbers out of input string
         var digits = new List<long>();
         foreach (Match digit in Regex.Matches(interval, "-?[0-9]+"))
             digits.Add(long.Parse(digit.Value));
         
+        // sort list if numbers are in wrong order
         digits.Sort();
-        _start = digits[0];
-        _end = digits[1];
+        Start = digits[0];
+        End = digits[1];
     }
 
     public bool Contains(Interval interval)
     {
-        return interval._start >= _start && interval._start <= _end || interval._end <= _end && interval._end >= _start ||
-               interval._start <= _start && interval._end >= _end;
+        // check start is between start and end of current interval OR end is is between start and end of current interval OR
+        return interval.Start >= Start && interval.Start <= End || interval.End <= End && interval.End >= Start ||
+               // start and end of current interval is between start and end of parameter interval
+               interval.Start <= Start && interval.End >= End;
     }
 
     public void Merge(Interval interval)
     {
-        if (interval._start < _start)
-            _start = interval._start;
-        if (interval._end > _end)
-            _end = interval._end;
+        if (interval.Start < Start)
+            Start = interval.Start;
+        if (interval.End > End)
+            End = interval.End;
     }
 
     public override string ToString()
     {
-        return $"[{_start},{_end}]";
+        return $"[{Start},{End}]";
     }
 }

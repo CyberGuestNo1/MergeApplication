@@ -2,6 +2,8 @@
 Microsoft Visual Studio Solution File, Format Version 12.00
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MergeApplication", "MergeApplication\MergeApplication.csproj", "{E11C66A6-259B-493A-A378-38998B987BE9}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MergeApplicationTests", "MergeApplicationTests\MergeApplicationTests.csproj", "{4BDC15A9-3E44-4FE3-954B-D50BBA245DAF}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -12,5 +14,9 @@ Global
 		{E11C66A6-259B-493A-A378-38998B987BE9}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E11C66A6-259B-493A-A378-38998B987BE9}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E11C66A6-259B-493A-A378-38998B987BE9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4BDC15A9-3E44-4FE3-954B-D50BBA245DAF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4BDC15A9-3E44-4FE3-954B-D50BBA245DAF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4BDC15A9-3E44-4FE3-954B-D50BBA245DAF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4BDC15A9-3E44-4FE3-954B-D50BBA245DAF}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
