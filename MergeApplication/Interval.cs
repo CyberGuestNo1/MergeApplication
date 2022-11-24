@@ -8,6 +8,10 @@ public class Interval
     public long Start;
     public long End;
 
+    /// <summary>
+    /// Create a new Interval object
+    /// </summary>
+    /// <param name="interval">The string of interval with two digits. E.g. '[-1,15]'</param>
     public Interval(string interval)
     {
         // get numbers out of input string
@@ -21,6 +25,11 @@ public class Interval
         End = digits[1];
     }
 
+    /// <summary>
+    /// Check if parameter interval overlaps with current interval
+    /// </summary>
+    /// <param name="interval">The interval to check with current interval</param>
+    /// <returns>A boolean</returns>
     public bool Contains(Interval interval)
     {
         // check start is between start and end of current interval OR end is between start and end of current interval OR
@@ -29,6 +38,10 @@ public class Interval
                interval.Start <= Start && interval.End >= End;
     }
 
+    /// <summary>
+    /// Merge the current interval with the parameter interval
+    /// </summary>
+    /// <param name="interval">The interval that should be merged with the current interval</param>
     public void Merge(Interval interval)
     {
         if (interval.Start < Start)
@@ -37,6 +50,10 @@ public class Interval
             End = interval.End;
     }
 
+    /// <summary>
+    /// Convert the current Interval to string. E.g. '[-1,15]'
+    /// </summary>
+    /// <returns>A string</returns>
     public override string ToString()
     {
         return $"[{Start},{End}]";

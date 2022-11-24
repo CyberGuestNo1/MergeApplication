@@ -11,7 +11,7 @@ stages:
 
 build:
   stage: build
-  image: mcr.microsoft.com/dotnet/sdk:latest
+  image: mcr.microsoft.com/dotnet/sdk:6.0
   artifacts:
     paths:
       - target/*
@@ -20,7 +20,7 @@ build:
 
 unittests:
   stage: test
-  image: mcr.microsoft.com/dotnet/sdk:latest
+  image: mcr.microsoft.com/dotnet/sdk:6.0
   script:
     - dotnet test -c Release ./MergeApplicationTests/MergeApplicationTests.csproj
 
