@@ -21,7 +21,7 @@ Command Line Tool to merge overlapping intervals.
 ## Build
 ### Systemrequirements
 * Windows 10 (x64)
-* Microsoft .Net 6.0.4 - Windows Server Hosting
+* Microsoft .Net SDK 6.0.4 (x64)
 
 ### Scipts
 * Build for Windows 10 (x64) with runtime included CMD/Powershell `dotnet publish -c Release ./MergeApplication/MergeApplication.csproj -o "./target"`
@@ -31,7 +31,7 @@ Command Line Tool to merge overlapping intervals.
 ## Test
 ### Systemrequirements
 * Windows 10 (x64)
-* Microsoft .Net 6.0.4 - Windows Server Hosting
+* Microsoft .Net SDK 6.0.4 (x64)
 
 ### Scipts
 * Run unittests for Windows 10 (x64) CMD/Powershell `dotnet test -c Release ./MergeApplicationTests/MergeApplicationTests.csproj`
