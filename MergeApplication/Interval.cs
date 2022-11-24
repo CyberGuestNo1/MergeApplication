@@ -22,7 +22,7 @@ public class Interval
 
     public bool Contains(Interval interval)
     {
-        // check start is between start and end of current interval OR end is is between start and end of current interval OR
+        // check start is between start and end of current interval OR end is between start and end of current interval OR
         return interval.Start >= Start && interval.Start <= End || interval.End <= End && interval.End >= Start ||
                // start and end of current interval is between start and end of parameter interval
                interval.Start <= Start && interval.End >= End;
