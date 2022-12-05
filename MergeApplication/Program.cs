@@ -30,10 +30,19 @@ public static class Program
         foreach (var interval in inputs)
         {
             var intervalObject = new Interval(interval);
-            // check if interval can be merged with already existing interval, else add to list
-            var containingInterval = mergedIntervals.FirstOrDefault(x => x.Contains(intervalObject));
-            if(containingInterval != null)
-                containingInterval.Merge(intervalObject);
+            // check if interval can be merged with already existing intervals, else add to list
+            var containingInterval = mergedIntervals.FindAll(x => x.Contains(intervalObject));
+            if (containingInterval.Any())
+            {
+                var intervalsToMerge = new List<Interval> { intervalObject };
+                intervalsToMerge.AddRange(containingInterval.Skip(1));
+                // merge all containing intervals
+                containingInterval.First().Merge(intervalsToMerge);
+                
+                // remove already added intervals that are now merged
+                foreach (var mergedInterval in containingInterval.Skip(1))
+                    mergedIntervals.Remove(mergedInterval);
+            }
             else
                 mergedIntervals.Add(intervalObject);
         }

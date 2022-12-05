@@ -50,6 +50,7 @@ public class ProgramTests
     [TestCase(new object[] {"[10,20]", "[11,25]"}, new object[] {"[10,25]"})] // merge increase end
     [TestCase(new object[] {"[10,20]", "[5,15]"}, new object[] {"[5,20]"})] // merge decrease start
     [TestCase(new object[] {"[10,20]", "[5,25]"}, new object[] {"[5,25]"})] // merge increase end and decrease start
+    [TestCase(new object[] {"[10,20]", "[21,30]", "[1,40]"}, new object[] {"[1,40]"})] // merge two already added intervals
     public void TestMerge(object[] objectArgs, object[] objectOutput)
     {
         // convert object arrays to string arrays. TestCase does not support arrays of type string

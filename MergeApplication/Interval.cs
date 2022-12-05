@@ -41,13 +41,16 @@ public class Interval
     /// <summary>
     /// Merge the current interval with the parameter interval
     /// </summary>
-    /// <param name="interval">The interval that should be merged with the current interval</param>
-    public void Merge(Interval interval)
+    /// <param name="intervals">List of intervals that should be merged with the current interval</param>
+    public void Merge(List<Interval> intervals)
     {
-        if (interval.Start < Start)
-            Start = interval.Start;
-        if (interval.End > End)
-            End = interval.End;
+        foreach (var interval in intervals) 
+        {
+            if (interval.Start < Start)
+                Start = interval.Start;
+            if (interval.End > End)
+                End = interval.End;
+        }
     }
 
     /// <summary>

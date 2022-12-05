@@ -1,4 +1,5 @@
-﻿using MergeApplication;
+﻿using System.Collections.Generic;
+using MergeApplication;
 using NUnit.Framework;
 
 namespace MergeApplicationTests;
@@ -29,7 +30,7 @@ public class IntervalTest
         var second = new Interval(secondInterval);
         Assert.AreEqual(result, first.Contains(second));
     }
-    
+
     [Test]
     [TestCase("[10,20]", "[11,19]", 10, 20)] // first includes second
     [TestCase("[10,20]", "[11,25]", 10, 25)] // first includes second. first end increased to 25
@@ -39,7 +40,7 @@ public class IntervalTest
     {
         var first = new Interval(firstInterval);
         var second = new Interval(secondInterval);
-        first.Merge(second);
+        first.Merge(new List<Interval> { second });
         Assert.AreEqual(start, first.Start);
         Assert.AreEqual(end, first.End);
     }
